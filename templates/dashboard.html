@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Popper -->
     <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
   </head>
 
   <body class="m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500">
@@ -256,7 +257,7 @@
                   <p class="mb-0">Rewards for limiting Carbon Emission</p>
                 </div>
                 <div class="flex-auto p-6">
-                  <form method="POST" action="submit">
+                  <form method="POST" action="submit" class="form-anticlear" id="apnaForm">
                     {% csrf_token %}
                     <div class="mb-4">
                       <p class="mb-0">Select Industrial Sector</p>
@@ -296,13 +297,19 @@
                       <input type="text" name="publickey"  placeholder="Wallet Address" class="focus:shadow-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
                     </div>
                     <div class="text-center">
-                      <input type="submit" value="Submit" class="inline-block w-full px-16 py-3.5 mt-6 mb-0 font-bold leading-normal text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25">          
+                      <input type="submit" value="Submit" id="submitUser" class="inline-block w-full px-16 py-3.5 mt-6 mb-0 font-bold leading-normal text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25">          
                     </div>
                   </form>
                 </div>
               </div>
             </div>
           </div>
+
+          <script>
+            document.getElementById("apnaForm").onsubmit=function(){
+              deploy();
+            }; 
+          </script>
 
           <div class="w-full max-w-full px-3 lg:w-5/12 lg:flex-none">
             <div slider class="relative w-full h-full overflow-hidden rounded-2xl">
@@ -596,6 +603,7 @@
   </body>
   <!-- plugin for charts  -->
   <script src="{% static 'js/plugins/chartjs.min.js' %}" async></script>
+  <script src="{% static 'js/deploy.js' %}"></script>
   <!-- plugin for scrollbar  -->
   <script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}" async></script>
   <!-- main script file  -->

@@ -45,7 +45,7 @@ def login(request):
         user=auth.authenticate(username=username,password=password)
         if username=="admin" and user is not None:
             auth.login(request,user)
-            return redirect('/gov_dashboard')
+            return redirect('/govDashboard')
         elif user is not None:
             auth.login(request,user)
             return redirect('/company_dashboard')
@@ -69,7 +69,7 @@ def company_dash(request):
         emmit = carbonEmmited(company_name=company_name,carbon_emmited_CO2=carbonEmmitedCO2,carbon_emmited_CH4=carbonEmmitedCH4,carbon_emmited_N2O=carbonEmmitedN2O,carbon_emmited_F=carbonEmmitedF,carbon_emmited_Total=carbonEmmitedTotal,year=year,public_key=public_key)
         emmit.save()
         return HttpResponse("Form Submitted")
-    else:return render(request,"company_dashboard.html")
+    else:return render(request,"dashboard.html")
     
 
 def gov_dash(request):
@@ -78,8 +78,8 @@ def gov_dash(request):
         capalloted=request.POST['cap']
         capping = carbonCap(sector_name=sector_name,cap_alloted=capalloted)
         carbonCap.save()
-        return render(request,"gov_dashboard.html")
-    else:return render(request,"gov_dashboard.html")
+        return render(request,"govDashboard.html")
+    else:return render(request,"govDashboard.html")
 
 def logout(request):
     auth.logout(request)
@@ -106,4 +106,4 @@ def dash_form(request):
     public_key=request.POST['publickey']
     emmit = carbonEmmited(company_name=company_name,carbon_emmited_CO2=carbonEmmitedCO2,carbon_emmited_CH4=carbonEmmitedCH4,carbon_emmited_N2O=carbonEmmitedN2O,carbon_emmited_F=carbonEmmitedF,carbon_emmited_Total=carbonEmmitedTotal,year=year,public_key=public_key)
     emmit.save()
-    return HttpResponse("Form Submitted")
+    return render(request,"dashboard.html")

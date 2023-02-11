@@ -21,12 +21,11 @@ urlpatterns = [
     path('sign-up',views.register,name="register"),
     path('sign-in',views.login,name="login"),
     path('company_dashboard',views.company_dash,name="comp_dash"),
-    path('gov_dashboard',views.gov_dash,name="gov_dash"),
+    path('govDashboard',views.gov_dash,name="gov_dash"),
     path('logout',views.logout,name="logout"),
     #path('sign-up',views.signUp, name="sign-up"),
     #path('sign-in',views.signIn, name="sign-in"),
     path('dashboard',views.dashboard, name="dashboard"),
     path('submit',views.dash_form, name="submit"),
-    
     
 ]
